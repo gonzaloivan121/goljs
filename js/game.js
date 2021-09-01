@@ -205,13 +205,18 @@ function setup() {
     context.fillRect(0, 0, canvasWidth, 1);              // Top border
 }
 
-function startGame() {
+function startGame(to = null) {
     for (var x = 0; x < tileCount; x++) {
         cellArray[x] = [];
         iterationCellArray[x] = [];
         for (var y = 0; y < tileCount; y++) {
-            cellArray[x][y] = new Cell(x, y);
-            iterationCellArray[x][y] = new Cell(x, y);
+            if (to == null) {
+                cellArray[x][y] = new Cell(x, y);
+                iterationCellArray[x][y] = new Cell(x, y);
+            } else {
+                cellArray[x][y] = new Cell(x, y);
+                iterationCellArray[x][y] = new Cell(x, y);
+            }
         }
     }
     if (IntervalID === undefined) {
@@ -223,24 +228,17 @@ function pauseGame() {
     gamePaused = !gamePaused;
 }
 
-function resetGame() {
-    generation = 0;
-    gameHistory.deleteHistory();
-    updateTileScale(50);
-    startGame();
-    gamePaused = true;
-}
-
-function downloadGameState() {
-    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(cellArray));
-    var downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", "state.json");
-    document.body.appendChild(downloadAnchorNode);
-    downloadAnchorNode.click();
-    downloadAnchorNode.remove();
-}
-
-function uploadGameState() {
-    console.log("Loading Saved Game")
+function resetGame(to = null) {
+    if (to == null) {
+        generation = 0;
+        gameHistory.deleteHistory();
+        updateTileScale(50);
+        startGame();
+        gamePaused = true;
+    } else {
+        generation = 0;
+        gameHistory.deleteHistory();
+        startGame(to);
+        gamePaused = true;
+    }
 }

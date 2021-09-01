@@ -71,3 +71,56 @@ function closeAlert() {
         $('#alert').removeClass($('#alert').css()[$('#alert').css().length - 1]);
     }, 500);
 }
+
+function uploadGameState() {
+    var file = $('#uploadFile').prop('files')[0];
+
+    if (file !== undefined) {
+        var newFile = new File([file], file.name.split('.')[0]+'.json', { type: 'application/json'});
+        var formData = new FormData();
+        formData.append("file", newFile);
+        
+        $.ajax({
+            url: "upload.php",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            type: 'post',
+            success: (fileName) => {
+                //console.log(JSON.parse('assets/save/'+fileName));
+                $('#designModal').modal('dismiss');
+            }
+        });
+        return false;
+    }
+}
+
+function downloadGameState() {
+    var formData = new FormData();
+    formData.append("saves_name", "Test");
+    formData.append("saves_json", JSON.stringify(iterationCellArray));
+    formData.append("saves_tileCount", tileCount);
+    formData.append("saves_ups", UPS);
+    formData.append("saves_image", 1);
+
+    $.ajax({
+        url: "database.php?ope=save",
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: formData,
+        type: 'post',
+        success: (response) => {
+            alert("State Uploaded to Database!");
+        }
+    });
+
+    /*var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(iterationCellArray));
+    var downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "state.save");
+    document.body.appendChild(downloadAnchorNode);
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();*/
+}

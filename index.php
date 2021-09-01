@@ -1,9 +1,13 @@
+<?php
+  require_once "database.php";
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
     <!--<meta name="viewport" content="width=device-width, initial-scale=0.86, user-scalable=no">-->
     <meta name="viewport" content="width=device-width, initial-scale=0.86">
-    <script src="./js/libraries/jquery-3.3.1.slim.min.js"></script>
+    <script src="./js/libraries/jquery-3.3.1.min.js"></script>
     <script src="./js/libraries/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet" />
@@ -128,16 +132,17 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="designModalLabel">Designs</h5>
+            <div class="float-right">
+              <input type="file" class="form-control" id="uploadFile" accept=".save" oninput="uploadGameState()" />
+            </div><br>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <div class="float-right">
-              <input type="file" class="form-control" id="customFile" />
-            </div><br>
+
             <div class="card">
-              <img class="card-img-top" src="..." alt="Card image cap">
+              <img class="card-img-top" src="./assets/img/resources/game.jpg" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
@@ -146,10 +151,6 @@
               </div>
             </div>
           </div>
-          <!--<div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>-->
         </div>
       </div>
     </div>

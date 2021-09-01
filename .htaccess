@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteBase /
+
+RewriteRule ^/$                 index.php   [NC,L]
+RewriteRule ^/upload$            upload.php  [NC,L]

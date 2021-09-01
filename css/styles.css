@@ -41,33 +41,20 @@
 
 .header-background {
   height: 65vh;
-  background-image: url(../assets/img/header-background.jpg);
+  background-image: url(../assets/img/resources/header-background.jpg);
   box-shadow: inset 0 0 20em 15em #000;
-}
-
-.triangle-container {
-  height: 35vh;
-  position: relative;
-}
-
-.triangle-container .triangle {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-
-.triangle-container .left {
-  background: url(../assets/img/game.jpg);
-  clip-path: polygon(0 0, 66% 0, 33% 100%, 0 100%);
-}
-
-.triangle-container .right {
-  background-color: blue;
-  clip-path: polygon(66% 0, 100% 0%, 100% 100%, 33% 100%);
 }
 
 .range-group {
   display: contents;
+}
+
+.modal-header {
+  align-items: center !important;
+}
+
+.modal-title {
+  flex:1;
 }
 
 
