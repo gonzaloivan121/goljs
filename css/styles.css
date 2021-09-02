@@ -57,6 +57,19 @@
   flex:1;
 }
 
+.card-img-top {
+  max-width: 100%;
+  width: 75vh;
+}
+
+#alert {
+  position: fixed !important;
+  bottom: 0;
+  display: none;
+  opacity: 0;
+}
+
+
 
 
 
@@ -81,6 +94,28 @@
   .navbar .navbar-brand, .navbar .nav-link {
     color: #555;
   }
+
+  .design-modal {
+    max-width: 100% !important;
+  }
+
+  .range-sliders {
+    flex-direction: column;
+  }
+
+  .range-sliders .range-group {
+    display: flex;
+  }
+
+  .range-sliders .range-group span {
+    flex: 0.1;
+    text-align: center;
+  }
+
+  .range-sliders .range-group .range-field {
+    flex: 1;
+    width: 100% !important;
+  }
 }
 
 @media (min-width: 992px) {
@@ -88,18 +123,12 @@
     padding-right: 1rem !important;
     padding-left: 1rem !important;
   }
+
+  .design-modal {
+    max-width: 60% !important;
+  }
 }
 
-.design-modal {
-  max-width: 80% !important;
-}
-
-#alert {
-  position: fixed !important;
-  bottom: 0;
-  display: none;
-  opacity: 0;
-}
 
 
 

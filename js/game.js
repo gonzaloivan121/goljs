@@ -214,8 +214,8 @@ function startGame(to = null) {
                 cellArray[x][y] = new Cell(x, y);
                 iterationCellArray[x][y] = new Cell(x, y);
             } else {
-                cellArray[x][y] = new Cell(x, y);
-                iterationCellArray[x][y] = new Cell(x, y);
+                iterationCellArray[x][y] = new Cell(to[x][y].position.x, to[x][y].position.y);
+                iterationCellArray[x][y].isAlive = to[x][y].isAlive;
             }
         }
     }

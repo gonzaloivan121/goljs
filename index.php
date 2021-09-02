@@ -1,5 +1,6 @@
 <?php
   require_once "database.php";
+  $saves = getSaves();
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +61,7 @@
       <!-- END HEADER -->
 
       <!-- START RANGE SLIDERS -->
-      <div class="d-flex justify-content-center my-4" style="margin-bottom: 0 !important; margin-top: 3rem !important; justify-content: space-evenly !important;">
+      <div class="d-flex justify-content-center my-4 range-sliders" style="margin-bottom: 0 !important; margin-top: 3rem !important; justify-content: space-evenly !important;">
         <div class="range-group">
           <span class="font-weight-bold indigo-text mr-2 mt-1" style="color:white;">1</span>
           <form class="range-field w-25" style="text-align: center;">
@@ -90,7 +91,7 @@
         <canvas id="golCanvas" width="450" height="450"></canvas>
       </div>
       <!-- END CANVAS -->
-      <p class="lead mb-4" style="text-align: center; color: white;">Generation: <label id="generation">0</label></p>
+      <p class="lead mb-5" style="text-align: center; color: white;">Generation: <label id="generation">0</label></p>
     </div>
     <!-- END CONTAINER -->
 
@@ -140,16 +141,23 @@
             </button>
           </div>
           <div class="modal-body">
+            <?php if (sizeof($saves) > 0) {
+              foreach ($saves as $save) { ?>
 
-            <div class="card">
-              <img class="card-img-top" src="./assets/img/resources/game.jpg" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
+                <div class="card" id="card-<?php echo $save["saves_id"]; ?>" data-id="<?php echo $save["saves_id"]; ?>">
+                  <img class="card-img-top" src="<?php echo $save["image_image"]; ?>" alt="<?php echo $save["saves_name"]; ?>" style="height: 50vh; object-fit: cover;" />
+                  <div class="card-body">
+                    <h5 class="card-title"><?php echo $save["saves_name"]; ?></h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
+                    </p>
+                    <?php $save["saves_json"] = base64_encode($save["saves_json"]); ?>
+                    <button type="button" class="btn btn-dark" onclick="loadGameState('<?php echo $save["saves_json"]; ?>')">Load</a>
+                  </div>
+                </div><br>
+
+              <?php }
+            } ?>
+
           </div>
         </div>
       </div>

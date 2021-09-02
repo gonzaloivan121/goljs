@@ -12,6 +12,8 @@ var h = s.height;
 canvas.width = w.split('px')[0];
 canvas.height = h.split('px')[0];
 
+var designs = [];
+
 $(() => {
     resizeCanvas();
 
@@ -32,8 +34,8 @@ function resizeCanvas() {
     canvas.css("height", "75%");
 }
 
-function openDesigns() {
-    console.log("Opening Designs Modal")
+function loadDesigns() {
+    
 }
 
 function showGameEndedAlert() {
@@ -88,12 +90,25 @@ function uploadGameState() {
             data: formData,
             type: 'post',
             success: (fileName) => {
-                //console.log(JSON.parse('assets/save/'+fileName));
-                $('#designModal').modal('dismiss');
+                $('#designModal').modal();
             }
         });
         return false;
     }
+}
+
+function getSavesList() {
+    $.ajax({
+        url: "database.php?ope=get",
+        success: (data) => {
+            console.log(JSON.parse(data));
+        }
+    });
+}
+
+function loadGameState(state) {
+    resetGame(JSON.parse(atob(state)))
+    $("#designModal .close").click();
 }
 
 function downloadGameState() {
@@ -102,7 +117,8 @@ function downloadGameState() {
     formData.append("saves_json", JSON.stringify(iterationCellArray));
     formData.append("saves_tileCount", tileCount);
     formData.append("saves_ups", UPS);
-    formData.append("saves_image", 1);
+    var img = canvas.toDataURL("image/png");
+    formData.append("image", img);
 
     $.ajax({
         url: "database.php?ope=save",
