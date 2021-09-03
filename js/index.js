@@ -74,14 +74,20 @@ function closeAlert() {
             $('#alert').css('display', 'none');
             var classes = $('#alert').attr("class").split(' ');
             $('#alert').removeClass(classes[classes.length-1]);
+            isAlertShowing = false;
         }, 500);
-        isAlertShowing = false;
     }
-    
 }
 
 function searchSaves(string) {
-    console.log(string)
+    $('.card').each(function() {
+        if ($(this).filter('[data-search-string *= ' + string + ']').length > 0 || string.length < 1) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+    $('#designModal').modal('handleUpdate');
 }
 
 var isLoadingSaves = false;
@@ -101,7 +107,7 @@ function getSavesList() {
     }
 }
 
-function updateSavesList(data) {
+function updateSavesList(data) {+
     $("#designModal .modal-dialog .modal-content .modal-body .card").remove();
     $("#designModal .modal-dialog .modal-content .modal-body br").remove();
     $('#designModal').modal('handleUpdate');
@@ -116,12 +122,11 @@ function updateSavesList(data) {
             div +=     '<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card\'s content.</p>';
             div +=     '<button type="button" class="btn btn-dark" onclick="loadGameState(\''+tmp+'\')">Load</a>';
             div +=   '</div>';
-            div += '</div><br>';
-
-            $("#designModal .modal-dialog .modal-content .modal-body").append(div);
+            div += '</div>';
+        $("#designModal .modal-dialog .modal-content .modal-body").append(div);
     }
-
     $('#designModal').modal('handleUpdate');
+
 }
 
 function loadGameState(state) {
@@ -153,12 +158,4 @@ function saveGameState() {
             showAlert("State has been saved to Database!", null, "success");
         }
     });
-
-    /*var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(iterationCellArray));
-    var downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", "state.save");
-    document.body.appendChild(downloadAnchorNode);
-    downloadAnchorNode.click();
-    downloadAnchorNode.remove();*/
 }

@@ -136,7 +136,7 @@
             <div class="float-right search-container">
               <div class="form-outline">
                 <span class="material-icons trailing" style="color: #989898;">search</span>
-                <input type="text" id="searchSaves" class="form-control" oninput="searchSaves(this.value)" />
+                <input type="text" id="searchSaves" class="form-control" oninput="searchSaves(this.value.toLowerCase())" />
                 <label class="form-label" for="searchSaves">Search</label>
               </div>
             </div><br>
@@ -148,7 +148,7 @@
             <?php if (sizeof($saves) > 0) { ?>
               <?php foreach ($saves as $save) { ?>
 
-                <div class="card" id="card-<?php echo $save["saves_id"]; ?>" data-id="<?php echo $save["saves_id"]; ?>">
+                <div class="card" id="card-<?php echo $save["saves_id"]; ?>" data-id="<?php echo $save["saves_id"]; ?>" data-search-string="<?php echo strtolower($save["saves_name"]); ?>">
                   <img class="card-img-top" src="<?php echo $save["image_image"]; ?>" alt="<?php echo $save["saves_name"]; ?>" style="height: 50vh; object-fit: cover;" />
                   <div class="card-body">
                     <h5 class="card-title"><?php echo $save["saves_name"]; ?></h5>
@@ -156,7 +156,7 @@
                     <?php $save["saves_json"] = base64_encode($save["saves_json"]); ?>
                     <button type="button" class="btn btn-dark" onclick="loadGameState('<?php echo $save["saves_json"]; ?>')">Load</a>
                   </div>
-                </div><br>
+                </div>
 
               <?php } ?>
             <?php } ?>

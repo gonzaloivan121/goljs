@@ -37,7 +37,6 @@ function changeCellState(posX, posY) {
             var ci = iterationCellArray[x][y];
             if (ci.position.x == posX && ci.position.y == posY) {
                 ci.isAlive = !ci.isAlive;
-
             }
         }
     }
@@ -170,8 +169,8 @@ function countAliveNeighbourCells(cells, x, y) {
 }
 
 function swapArrays() {
-    for (var y = 0; y < iterationCellArray.length; y++) {
-        for (var x = 0; x < iterationCellArray[y].length; x++) {
+    for (var x = 0; x < iterationCellArray.length; x++) {
+        for (var y = 0; y < iterationCellArray[x].length; y++) {
             var cell = iterationCellArray[x][y];
             cellArray[x][y] = new Cell(cell.position.x, cell.position.y);
             cellArray[x][y].isAlive = cell.isAlive;

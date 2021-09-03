@@ -58,7 +58,7 @@
 }
 
 .modal-body {
-  min-height: 85vh;
+  min-height: 50vh;
 }
 
 .search-container {
@@ -75,6 +75,14 @@
   bottom: 0;
   display: none;
   opacity: 0;
+}
+
+#designModal .modal-body .card {
+  margin-bottom: 1rem;
+}
+
+#designModal .modal-body .card:last-child {
+  margin-bottom: 0 !important;
 }
 
 
