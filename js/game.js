@@ -5,10 +5,9 @@ var tileScale = 50;
 var tileSize = canvasWidth / tileScale;
 var tileCount = canvasWidth / tileSize;
 
-var UPS = 7;
+var UPS = 10;
 var Interval = 1000 / UPS;
 var IntervalID;
-//var Interval = 1000/60; // 60 times a second
 
 var cellArray = [];
 var iterationCellArray = [];
@@ -16,7 +15,6 @@ var gameHistory = new History();
 var generation = 0;
 var gamePaused = true;
 var gameEnded = false;
-
 
 
 
@@ -34,9 +32,9 @@ function getCursorPosition(canvas, event) {
 function changeCellState(posX, posY) {
     for (var x = 0; x < iterationCellArray.length; x++) {
         for (var y = 0; y < iterationCellArray[x].length; y++) {
-            var ci = iterationCellArray[x][y];
-            if (ci.position.x == posX && ci.position.y == posY) {
-                ci.isAlive = !ci.isAlive;
+            var cell = iterationCellArray[x][y];
+            if (cell.position.x == posX && cell.position.y == posY) {
+                cell.isAlive = !cell.isAlive;
             }
         }
     }
