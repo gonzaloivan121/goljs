@@ -57,6 +57,10 @@
   flex:1;
 }
 
+.modal-body {
+  min-height: 85vh;
+}
+
 .card-img-top {
   max-width: 100%;
   width: 75vh;

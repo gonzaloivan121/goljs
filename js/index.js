@@ -97,13 +97,45 @@ function uploadGameState() {
     }
 }
 
+var isLoadingSaves = false;
+
 function getSavesList() {
-    $.ajax({
-        url: "database.php?ope=get",
-        success: (data) => {
-            console.log(JSON.parse(data));
-        }
-    });
+    if (!isLoadingSaves) {
+        isLoadingSaves = true;
+        $.ajax({
+            url: "database.php?ope=get",
+            success: (data) => {
+                updateSavesList(data);
+                isLoadingSaves = false;
+            }
+        });
+    } else {
+        return;
+    }
+}
+
+function updateSavesList(data) {
+    $("#designModal .modal-dialog .modal-content .modal-body .card").remove();
+    $("#designModal .modal-dialog .modal-content .modal-body br").remove();
+    $('#designModal').modal('handleUpdate');
+
+    for (var i = data.length-1; i >= 0; i--) {
+        const save = data[i];
+        var tmp = btoa(save.saves_json);
+        var div  = '<div class="card" id="card-'+save.saves_id+'" data-id="'+save.saves_id+'">';
+            div +=   '<img class="card-img-top" src="'+save.image_image+'" alt="'+save.saves_name+'" style="height: 50vh; object-fit: cover;" />';
+            div +=   '<div class="card-body">';
+            div +=     '<h5 class="card-title">'+save.saves_name+'</h5>';
+            div +=     '<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card\'s content.</p>';
+            div +=     '<button type="button" class="btn btn-dark" onclick="loadGameState(\''+tmp+'\')">Load</a>';
+            div +=   '</div>';
+            div += '</div><br>';
+
+            $("#designModal .modal-dialog .modal-content .modal-body").append(div);
+    }
+
+    $('#designModal').modal('handleUpdate');
+    //console.log(data);
 }
 
 function loadGameState(state) {
@@ -128,6 +160,7 @@ function downloadGameState() {
         data: formData,
         type: 'post',
         success: (response) => {
+            getSavesList();
             alert("State Uploaded to Database!");
         }
     });

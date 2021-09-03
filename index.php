@@ -141,22 +141,21 @@
             </button>
           </div>
           <div class="modal-body">
-            <?php if (sizeof($saves) > 0) {
-              foreach ($saves as $save) { ?>
+            <?php if (sizeof($saves) > 0) { ?>
+              <?php foreach ($saves as $save) { ?>
 
                 <div class="card" id="card-<?php echo $save["saves_id"]; ?>" data-id="<?php echo $save["saves_id"]; ?>">
                   <img class="card-img-top" src="<?php echo $save["image_image"]; ?>" alt="<?php echo $save["saves_name"]; ?>" style="height: 50vh; object-fit: cover;" />
                   <div class="card-body">
                     <h5 class="card-title"><?php echo $save["saves_name"]; ?></h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
-                    </p>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     <?php $save["saves_json"] = base64_encode($save["saves_json"]); ?>
                     <button type="button" class="btn btn-dark" onclick="loadGameState('<?php echo $save["saves_json"]; ?>')">Load</a>
                   </div>
                 </div><br>
 
-              <?php }
-            } ?>
+              <?php } ?>
+            <?php } ?>
 
           </div>
         </div>
