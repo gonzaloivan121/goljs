@@ -49,10 +49,6 @@ function resizeCanvas() {
     canvas.css("height", "80%");
 }
 
-function loadDesigns() {
-    
-}
-
 function showGameEndedAlert() {
     showAlert(
         'The Game has ended after ' + generation + ' generations!',
