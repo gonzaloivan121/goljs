@@ -224,8 +224,8 @@ function startGame(to = null) {
     }
 }
 
-function pauseGame() {
-    gamePaused = !gamePaused;
+function pauseGame(pause = null) {
+    gamePaused = (pause == null) ? !gamePaused : pause;
     if (gamePaused) {
         $("#play-button").attr("data-mdb-original-title", "Start Game");
         $("#play-button").attr("title", "Start Game");
@@ -244,11 +244,11 @@ function resetGame(to = null) {
         gameHistory.deleteHistory();
         updateTileScale(50);
         startGame();
-        gamePaused = true;
+        pauseGame(true);
     } else {
         generation = 0;
         gameHistory.deleteHistory();
         startGame(to);
-        gamePaused = true;
+        pauseGame(true);
     }
 }

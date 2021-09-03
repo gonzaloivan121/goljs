@@ -80,27 +80,8 @@ function closeAlert() {
     
 }
 
-function uploadGameState() {
-    var file = $('#uploadFile').prop('files')[0];
-
-    if (file !== undefined) {
-        var newFile = new File([file], file.name.split('.')[0]+'.json', { type: 'application/json'});
-        var formData = new FormData();
-        formData.append("file", newFile);
-        
-        $.ajax({
-            url: "upload.php",
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: formData,
-            type: 'post',
-            success: (fileName) => {
-                $('#designModal').modal();
-            }
-        });
-        return false;
-    }
+function searchSaves(string) {
+    console.log(string)
 }
 
 var isLoadingSaves = false;

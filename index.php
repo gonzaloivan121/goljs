@@ -133,8 +133,12 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="designModalLabel">Designs</h5>
-            <div class="float-right">
-              <input type="file" class="form-control" id="uploadFile" accept=".save" oninput="uploadGameState()" />
+            <div class="float-right search-container">
+              <div class="form-outline">
+                <span class="material-icons trailing" style="color: #989898;">search</span>
+                <input type="text" id="searchSaves" class="form-control" oninput="searchSaves(this.value)" />
+                <label class="form-label" for="searchSaves">Search</label>
+              </div>
             </div><br>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
