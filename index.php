@@ -7,7 +7,8 @@
 <html>
   <head>
     <!--<meta name="viewport" content="width=device-width, initial-scale=0.86, user-scalable=no">-->
-    <meta name="viewport" content="width=device-width, initial-scale=0.86">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Play Conway's Game of Life in a new reimagined way!">
     <script src="./js/libraries/jquery-3.3.1.min.js"></script>
     <script src="./js/libraries/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
