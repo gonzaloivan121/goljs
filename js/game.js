@@ -226,6 +226,16 @@ function startGame(to = null) {
 
 function pauseGame() {
     gamePaused = !gamePaused;
+    if (gamePaused) {
+        $("#play-button").attr("data-mdb-original-title", "Start Game");
+        $("#play-button").attr("title", "Start Game");
+        $("#play-button .material-icons").html("play_arrow");
+    } else {
+        $("#play-button").attr("data-mdb-original-title", "Pause Game");
+        $("#play-button").attr("title", "Pause Game");
+        $("#play-button .material-icons").html("pause");
+    }
+    
 }
 
 function resetGame(to = null) {

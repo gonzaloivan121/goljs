@@ -103,7 +103,7 @@
         </div>
       </div>
       <div class="sub-button shadow">
-        <a data-toggle="tooltip" title="Save State" onclick="downloadGameState()">
+        <a data-toggle="tooltip" title="Save State" onclick="saveGameState()">
           <span class="material-icons">save</span>
         </a>
       </div>
@@ -115,7 +115,7 @@
         </span>
       </div>
       <div class="sub-button shadow">
-        <a data-toggle="tooltip" title="Start Game" onclick="pauseGame()">
+        <a id="play-button" data-toggle="tooltip" title="Start Game" onclick="pauseGame()">
           <span class="material-icons">play_arrow</span>
         </a>
       </div>
@@ -171,6 +171,20 @@
       </button>
     </div>
     <!-- END ALERT MODAL -->
+    
+    <!-- START SPINNER MODAL -->
+    <div class="modal fade" id="spinnerModal" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered justify-content-center" role="document">
+
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border text-light" role="status"></div>
+          <span class="sr-only">Saving...</span>
+          <span class="font-weight-bold indigo-text mr-2 mt-1" style="color: white; margin-left: .5rem;">Saving...</span>
+        </div>
+
+      </div>
+    </div>
+    <!-- END SPINNER MODAL -->
 
     <!-- START SCRIPTS -->
     <script src="./js/navbar.js"></script>

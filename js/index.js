@@ -46,6 +46,7 @@ function showGameEndedAlert() {
 }
 
 var timeout = 5;
+var isAlertShowing = false;
 /**
  * Show a custom alert toast
  * @param  {String} title  The title of the alert
@@ -53,25 +54,30 @@ var timeout = 5;
  * @param  {String} style  The style of the alert. Default: warning
  * @param  {Number} time   The ammount of time in seconds the alert will last
  */
-function showAlert(title = null, text, style = 'warning', time = 5) {
+function showAlert(title, text = null, style = 'warning', time = 5) {
+    isAlertShowing = true;
     $('#alert').addClass('alert-'+style);
     $('#alert-title').text(title);
-    $('#alert-message').text(' '+text);
-    $('#alert').css('opacity', '1');
+    $('#alert-message').text((text != null) ? ' '+text : '');
     $('#alert').css('display', 'block');
+    $('#alert').css('opacity', '1');
 
     setTimeout(() => {
         closeAlert();
     }, time * 1000);
-    
 }
 
 function closeAlert() {
-    $('#alert').css('opacity', '0');
-    setTimeout(() => {
-        $('#alert').css('display', 'none');
-        $('#alert').removeClass($('#alert').css()[$('#alert').css().length - 1]);
-    }, 500);
+    if (isAlertShowing) {
+        $('#alert').css('opacity', '0');
+        setTimeout(() => {
+            $('#alert').css('display', 'none');
+            var classes = $('#alert').attr("class").split(' ');
+            $('#alert').removeClass(classes[classes.length-1]);
+        }, 500);
+        isAlertShowing = false;
+    }
+    
 }
 
 function uploadGameState() {
@@ -135,7 +141,6 @@ function updateSavesList(data) {
     }
 
     $('#designModal').modal('handleUpdate');
-    //console.log(data);
 }
 
 function loadGameState(state) {
@@ -143,7 +148,9 @@ function loadGameState(state) {
     $("#designModal .close").click();
 }
 
-function downloadGameState() {
+function saveGameState() {
+    $("#spinnerModal").modal('show');
+
     var formData = new FormData();
     formData.append("saves_name", "Test");
     formData.append("saves_json", JSON.stringify(iterationCellArray));
@@ -161,7 +168,8 @@ function downloadGameState() {
         type: 'post',
         success: (response) => {
             getSavesList();
-            alert("State Uploaded to Database!");
+            $("#spinnerModal").modal('hide');
+            showAlert("State has been saved to Database!", null, "success");
         }
     });
 
