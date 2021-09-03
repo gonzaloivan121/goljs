@@ -1,9 +1,24 @@
 Number.prototype.map = function (min1, max1, min2, max2) { return min2 + (max2 - min2) * ((this - min1) / (max1 - min1)) }
 
-const canvas = document.querySelector('canvas')
-canvas.addEventListener('mousedown', function (e) {
+var isMouseDown = false;
+
+const canvas = document.querySelector('canvas');
+
+canvas.addEventListener('mousedown', function(e) {
+    isMouseDown = true;
     getCursorPosition(canvas, e);
 });
+
+canvas.addEventListener('mousemove', function(e) {
+    if (!isMouseDown) return;
+    getCursorPosition(canvas, e);
+});
+
+canvas.addEventListener('mouseup', function(e) {
+    isMouseDown = false;
+});
+
+
 
 var s = getComputedStyle(canvas);
 var w = s.width;
@@ -31,7 +46,7 @@ $(window).on('resize', () => {
 
 function resizeCanvas() {
     var canvas = $('#golCanvas');
-    canvas.css("height", "75%");
+    canvas.css("height", "80%");
 }
 
 function loadDesigns() {
@@ -102,8 +117,6 @@ function getSavesList() {
                 isLoadingSaves = false;
             }
         });
-    } else {
-        return;
     }
 }
 
