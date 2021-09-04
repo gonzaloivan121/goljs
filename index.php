@@ -48,13 +48,13 @@
     <div class="container">
       <!-- START HEADER -->
       <div class="pt-5 text-white header-background">
-        <header class="py-5 mt-5 text-center" style="margin-top: 9rem !important;">
-          <h1 class="display-4">Game of Life</h1>
+        <header class="py-5 mt-5 text-center" style="margin-top: 7rem !important;">
+          <h1 class="display-4 mb-4">Game of Life</h1>
           <br>
-          <p class="lead mb-0">Conway's Game of Life, also known as the Game of Life or simply Life, is a cellular automaton devised by the British
-          mathematician John Horton Conway in 1970. It is the best-known example of a cellular automaton.
-          
-          The "game" is actually a zero-player game, meaning that its evolution is determined by its initial state, needing no
+          <p class="lead mb-3 pl-3 pr-3 text-justify">Conway's Game of Life, also known as the Game of Life or simply Life, is a cellular automaton devised by the British
+          mathematician John Horton Conway in 1970. It is the best-known example of a cellular automaton.</p>
+
+          <p class="lead mb-5 pl-3 pr-3 text-justify">The "game" is actually a zero-player game, meaning that its evolution is determined by its initial state, needing no
           input from human players. One interacts with the Game of Life by creating an initial configuration and observing how it
           evolves.</p>
         </header>

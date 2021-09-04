@@ -136,6 +136,19 @@
   .search-container {
     width: 50vw;
   }
+
+  p, label {
+    font-size: 1rem !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-size: 2.5rem !important;
+  }
+
+  .fab-container {
+    bottom: 20px !important;
+    right: 20px !important;
+  }
 }
 
 @media (min-width: 992px) {
