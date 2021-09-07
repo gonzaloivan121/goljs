@@ -18,21 +18,10 @@ canvas.addEventListener('mouseup', function(e) {
     isMouseDown = false;
 });
 
-canvas.addEventListener('touchdown', function(e) {
-    e.preventDefault();
-    isMouseDown = true;
-    getCursorPosition(canvas, e);
-});
-
 canvas.addEventListener('touchmove', function(e) {
     e.preventDefault();
     if (!isMouseDown) return;
     getCursorPosition(canvas, e);
-});
-
-canvas.addEventListener('touchup', function(e) {
-    e.preventDefault();
-    isMouseDown = false;
 });
 
 
