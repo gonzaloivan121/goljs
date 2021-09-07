@@ -18,6 +18,20 @@ canvas.addEventListener('mouseup', function(e) {
     isMouseDown = false;
 });
 
+canvas.addEventListener('touchdown', function(e) {
+    isMouseDown = true;
+    getCursorPosition(canvas, e);
+});
+
+canvas.addEventListener('touchmove', function(e) {
+    if (!isMouseDown) return;
+    getCursorPosition(canvas, e);
+});
+
+canvas.addEventListener('touchup', function(e) {
+    isMouseDown = false;
+});
+
 
 
 var s = getComputedStyle(canvas);
