@@ -78,6 +78,9 @@ function showAlert(title, text = null, style = 'warning', time = 5) {
     }, time * 1000);
 }
 
+/**
+ * Close the custom alert toast
+ */
 function closeAlert() {
     if (isAlertShowing) {
         $('#alert').css('opacity', '0');
@@ -90,9 +93,13 @@ function closeAlert() {
     }
 }
 
-function searchSaves(string) {
+/**
+ * Function that runs on every input of the search form
+ * @param  {String} searchString  The text to search
+ */
+function searchSaves(searchString) {
     $('.card').each(function() {
-        if ($(this).filter('[data-search-string *= ' + string + ']').length > 0 || string.length < 1) {
+        if ($(this).filter('[data-search-string *= ' + searchString + ']').length > 0 || searchString.length < 1) {
             $(this).show();
         } else {
             $(this).hide();
@@ -103,6 +110,9 @@ function searchSaves(string) {
 
 var isLoadingSaves = false;
 
+/**
+ * Function that loads saves list from database
+ */
 function getSavesList() {
     if (!isLoadingSaves) {
         isLoadingSaves = true;
