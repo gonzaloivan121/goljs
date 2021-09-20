@@ -20,17 +20,12 @@ startGame();
 // GAME LOOP
 function startInterval(t) {
     IntervalID = setInterval(() => {
-        game();
+        drawBackground();
+        updateCells();
+        if (!gamePaused) {
+            generation++;
+        }
     }, t);
-}
-
-function game() {
-    drawBackground();
-    updateCells();
-    window.requestAnimationFrame(game);
-    if (!gamePaused) {
-        generation++;
-    }
 }
 
 function drawBackground() {
