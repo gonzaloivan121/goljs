@@ -37,6 +37,7 @@
               <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Gallery</a></li>
               <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Portfolio</a></li>
               <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Contact</a></li>
+              <li class="nav-item"><a href="./3d.php" class="nav-link text-uppercase font-weight-bold">3D</a></li>
             </ul>
           </div>
         </div>
